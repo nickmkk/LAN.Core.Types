@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Nicholas J. Markkula</authors>
+    <owners>Nicholas J. Markkula</owners>
+    <licenseUrl>https://raw.githubusercontent.com/nickmkk/LAN.Core.Types/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/nickmkk/LAN.Core.Types/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Encapsulated BSON serialization for custom value types</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>BSON Serialization</tags>
+  </metadata>
+</package>

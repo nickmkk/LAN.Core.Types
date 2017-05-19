@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAN.Core.Types", "LAN.Core.Types\LAN.Core.Types.csproj", "{B9E9086A-2019-4040-9611-59A9A174FCCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAN.Core.Types.Tests", "LAN.Core.Types.Tests\LAN.Core.Types.Tests.csproj", "{1ABF1FB4-37AA-4FE4-8023-790915692A59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8C6EF079-0359-4038-AE2E-9ADF6D174BC5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAN.Core.Types.JsonSerialization", "LAN.Core.Types.JsonSerialization\LAN.Core.Types.JsonSerialization.csproj", "{F0918DF6-E3E7-47AA-AC73-E7AA79817AC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAN.Core.Types.BsonSerialization", "LAN.Core.Types.BsonSerialization\LAN.Core.Types.BsonSerialization.csproj", "{B3271768-3961-454F-B035-AC1A69F8A881}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{407C303F-54CA-4EE6-964D-9221496A68A8}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9E9086A-2019-4040-9611-59A9A174FCCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E9086A-2019-4040-9611-59A9A174FCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E9086A-2019-4040-9611-59A9A174FCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E9086A-2019-4040-9611-59A9A174FCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABF1FB4-37AA-4FE4-8023-790915692A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABF1FB4-37AA-4FE4-8023-790915692A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABF1FB4-37AA-4FE4-8023-790915692A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABF1FB4-37AA-4FE4-8023-790915692A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0918DF6-E3E7-47AA-AC73-E7AA79817AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0918DF6-E3E7-47AA-AC73-E7AA79817AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0918DF6-E3E7-47AA-AC73-E7AA79817AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0918DF6-E3E7-47AA-AC73-E7AA79817AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3271768-3961-454F-B035-AC1A69F8A881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3271768-3961-454F-B035-AC1A69F8A881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3271768-3961-454F-B035-AC1A69F8A881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3271768-3961-454F-B035-AC1A69F8A881}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
