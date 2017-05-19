@@ -10,5 +10,5 @@ set /p apiKey=Enter API Key:%=%
 
 @echo Pushing To Nuget and SymbolSource...
 set /p typesVersion=Enter LAN.Core.Types Package Version:%=%
-.nuget\nuget push LAN.Core.Types.%typesVersion%.nupkg
+.nuget\nuget push LAN.Core.Types.%typesVersion%.nupkg -Source https://www.nuget.org/api/v2/package
 @echo ---------------------------------------------------

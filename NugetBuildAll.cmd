@@ -2,7 +2,7 @@
 Setlocal EnableDelayedExpansion
 
 set /p apiKey=Enter API Key:%=%
-.nuget\nuget setApiKey %apiKey% -source https://www.nuget.org
+.nuget\nuget setApiKey %apiKey%
 
 SET /p deployCoreTypes=Would you like to deploy the LAN.Core.Types Project? (y/n) %=%
 IF (!deployCoreTypes!) EQU (y) (
