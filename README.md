@@ -7,6 +7,7 @@ Encapsulated Json and Bson Serialization for Custom Value Objects:
 
 Create Serializers for your objects
 ---
+Json Serializer
 ```c#
   public class CustomDecimalJsonSerializer : ToDecimalJsonSerializer<CustomDecimal>
   {
@@ -20,7 +21,10 @@ Create Serializers for your objects
       return obj.ToValueType();
     }
   }
+```
 
+Bson Serializer
+```c#
   public class CustomDecimalBsonSerializer : ToDecimalBsonSerializer<CustomDecimal>
   {
     public override CustomDecimal CreateObjectFromDecimal(decimal serializedObj)
@@ -38,12 +42,16 @@ Create a serializer for each of your custom value types and inherit from the abs
 
 Register Your Serializers
 ---
+Json Registration
 ```c#
   JsonConvert.DefaultSettings = () => new JsonSerializerSettings
   {
     Converters = new JsonConverter[] { new CustomDecimalJsonSerializer() }
   };
+```
 
+Bson Registration
+```c#
   BsonSerializer.RegisterSerializer(typeof(CustomDecimal), new CustomDecimalBsonSerializer());  
 ```
 Then, just register the serializers when your application starts up and you can start serializing custom value types, yay!
