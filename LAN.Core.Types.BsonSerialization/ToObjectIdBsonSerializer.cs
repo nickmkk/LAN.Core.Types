@@ -7,8 +7,8 @@ namespace LAN.Core.Types.BsonSerialization
 {
 	public abstract class ToObjectIdBsonSerializer<T> : AbstractClassSerializer<T> where T : class
 	{
-		private static readonly Type _convertibleType = typeof(IConvertible<ObjectId>);
 		public abstract T CreateObjectFromObjectId(ObjectId serializedObj);
+		public abstract ObjectId CreateObjectIdFromObject(T obj);
 
 		public override T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
 		{
@@ -33,24 +33,12 @@ namespace LAN.Core.Types.BsonSerialization
 				default:
 					throw new NotSupportedException("Unable to create the type " + args.NominalType.Name + " from the bson type " + bsonType + ".");
 			}
-			return this.CreateObjectFromObjectId(value);
+			return CreateObjectFromObjectId(value);
 		}
 
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, T value)
 		{
-			if (value == null)
-			{
-				context.Writer.WriteObjectId(ObjectId.Empty);
-			}
-			else
-			{
-				if (!_convertibleType.IsAssignableFrom(args.NominalType))
-				{
-					throw new NotSupportedException("The type " + args.NominalType.Name + " must implement the " + _convertibleType.Name + " interface.");
-				}
-				var typedObj = (IConvertible<ObjectId>)value;
-				context.Writer.WriteObjectId(typedObj.ToValueType());
-			}
+		    context.Writer.WriteObjectId(value == null ? ObjectId.Empty : CreateObjectIdFromObject(value));
 		}
 
 	}

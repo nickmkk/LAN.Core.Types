@@ -57,9 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BsonConverters.cs" />
-    <Compile Include="EmailAddressBsonSerializer.cs" />
-    <Compile Include="PasswordHashBsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToBooleanBsonSerializer.cs" />
     <Compile Include="ToDateBsonSerializer.cs" />
@@ -70,12 +67,6 @@
     <Compile Include="ToObjectIdBsonSerializer.cs" />
     <Compile Include="ToStringBsonSerializer.cs" />
     <Compile Include="ToTimeSpanBsonSerializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LAN.Core.Types\LAN.Core.Types.csproj">
-      <Project>{B9E9086A-2019-4040-9611-59A9A174FCCB}</Project>
-      <Name>LAN.Core.Types</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

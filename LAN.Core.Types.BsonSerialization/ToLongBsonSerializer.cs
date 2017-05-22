@@ -7,8 +7,8 @@ namespace LAN.Core.Types.BsonSerialization
 {
 	public abstract class ToLongBsonSerializer<T> : AbstractClassSerializer<T> where T : class
 	{
-		private static readonly Type _convertibleType = typeof(IConvertible<long>);
 		public abstract T CreateObjectFromLong(long serializedObj);
+		public abstract long CreateLongFromObject(T obj);
 
 		public override T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
 		{
@@ -36,24 +36,12 @@ namespace LAN.Core.Types.BsonSerialization
 				default:
 					throw new NotSupportedException("Unable to create the type " + args.NominalType.Name + " from the the bson type " + bsonType + ".");
 			}
-			return this.CreateObjectFromLong(value);
+			return CreateObjectFromLong(value);
 		}
 
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, T value)
 		{
-			if (value == null)
-			{
-				context.Writer.WriteInt64(0);
-			}
-			else
-			{
-				if (!_convertibleType.IsAssignableFrom(args.NominalType))
-				{
-					throw new NotSupportedException("The type " + args.NominalType.Name + " must implement the " + _convertibleType.Name + " interface.");
-				}
-				var typedObj = (IConvertible<long>)value;
-				context.Writer.WriteInt64(typedObj.ToValueType());
-			}
+		    context.Writer.WriteInt64(value == null ? 0 : CreateLongFromObject(value));
 		}
 
 	}

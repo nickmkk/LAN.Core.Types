@@ -45,8 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters.cs" />
-    <Compile Include="EmailAddressJsonSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToBooleanJsonSerializer.cs" />
     <Compile Include="ToDateJsonSerializer.cs" />
@@ -56,12 +54,6 @@
     <Compile Include="ToLongJsonSerializer.cs" />
     <Compile Include="ToStringJsonSerializer.cs" />
     <Compile Include="ToTimeSpanJsonSerializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LAN.Core.Types\LAN.Core.Types.csproj">
-      <Project>{B9E9086A-2019-4040-9611-59A9A174FCCB}</Project>
-      <Name>LAN.Core.Types</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

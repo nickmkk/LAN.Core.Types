@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace LAN.Core.Types.JsonSerialization
+namespace LAN.Core.Types.Serialization
 {
 	public static class JsonConverters
 	{

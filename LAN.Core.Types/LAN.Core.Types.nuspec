@@ -9,7 +9,7 @@
     <licenseUrl>https://raw.githubusercontent.com/nickmkk/LAN.Core.Types/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/nickmkk/LAN.Core.Types/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Core Types for Encapsulating JSON and BSON serialization</description>
+    <description>Email and Password value objects with Json & Bson Serializers</description>
     <copyright>Copyright 2017</copyright>
     <tags>BSON JSON Serialization</tags>
   </metadata>

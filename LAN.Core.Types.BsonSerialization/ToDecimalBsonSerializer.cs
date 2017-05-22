@@ -7,8 +7,8 @@ namespace LAN.Core.Types.BsonSerialization
 {
     public abstract class ToDecimalBsonSerializer<T> : AbstractClassSerializer<T> where T : class
     {
-        private static readonly Type _convertibleType = typeof(IConvertible<decimal>);
         public abstract T CreateObjectFromDecimal(decimal serializedObj);
+        public abstract decimal CreateDecimalFromObject(T obj);
 
         public override T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
         {
@@ -42,24 +42,12 @@ namespace LAN.Core.Types.BsonSerialization
                 default:
                     throw new NotSupportedException("Unable to create the type " + args.NominalType.Name + " from the the bson type " + bsonType + ".");
             }
-            return this.CreateObjectFromDecimal(value);
+            return CreateObjectFromDecimal(value);
         }
 
         public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, T value)
         {
-            if (value == null)
-            {
-                context.Writer.WriteDecimal128(0);
-            }
-            else
-            {
-                if (!_convertibleType.IsAssignableFrom(args.NominalType))
-                {
-                    throw new NotSupportedException("The type " + args.NominalType.Name + " must implement the " + _convertibleType.Name + " interface.");
-                }
-                var typedObj = (IConvertible<decimal>)value;
-                context.Writer.WriteDecimal128(typedObj.ToValueType());
-            }
+            context.Writer.WriteDecimal128(value == null ? 0 : CreateDecimalFromObject(value));
         }
 
     }

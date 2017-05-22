@@ -1,6 +1,7 @@
 ﻿using System;
 using LAN.Core.Types.BsonSerialization;
 using LAN.Core.Types.JsonSerialization;
+using LAN.Core.Types.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using Newtonsoft.Json;

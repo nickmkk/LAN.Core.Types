@@ -7,8 +7,8 @@ namespace LAN.Core.Types.BsonSerialization
 {
 	public abstract class ToDoubleBsonSerializer<T> : AbstractClassSerializer<T> where T : class
 	{
-		private static readonly Type _convertibleType = typeof(IConvertible<double>);
 		public abstract T CreateObjectFromDouble(double serializedObj);
+		public abstract double CreateDoubleFromObject(T obj);
 
 		public override T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
 		{
@@ -39,24 +39,12 @@ namespace LAN.Core.Types.BsonSerialization
 				default:
 					throw new NotSupportedException("Unable to create the type " + args.NominalType.Name + " from the the bson type " + bsonType + ".");
 			}
-			return this.CreateObjectFromDouble(value);
+			return CreateObjectFromDouble(value);
 		}
 
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, T value)
 		{
-			if (value == null)
-			{
-				context.Writer.WriteDouble(0);
-			}
-			else
-			{
-				if (!_convertibleType.IsAssignableFrom(args.NominalType))
-				{
-					throw new NotSupportedException("The type " + args.NominalType.Name + " must implement the " + _convertibleType.Name + " interface.");
-				}
-				var typedObj = (IConvertible<double>)value;
-				context.Writer.WriteDouble(typedObj.ToValueType());
-			}
+		    context.Writer.WriteDouble(value == null ? 0 : CreateDoubleFromObject(value));
 		}
 
 	}

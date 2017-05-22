@@ -81,6 +81,11 @@ namespace LAN.Core.Types.Tests.Serialization
 			{
 				return new DoubleValueObj(serializedObj);
 			}
+
+		    public override double CreateDoubleFromObject(DoubleValueObj obj)
+		    {
+		        return obj.ToValueType();
+		    }
 		}
 
 		public class DoubleValueObjBsonSerializer : ToDoubleBsonSerializer<DoubleValueObj>
@@ -89,6 +94,11 @@ namespace LAN.Core.Types.Tests.Serialization
 			{
 				return new DoubleValueObj(serializedObj);
 			}
+
+		    public override double CreateDoubleFromObject(DoubleValueObj obj)
+		    {
+		        return obj.ToValueType();
+		    }
 		}
 
 		#endregion

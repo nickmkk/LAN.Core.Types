@@ -14,7 +14,7 @@ namespace LAN.Core.Types.Tests.Serialization
     {
         #region Value Object Implementation
 
-        public class DecimalValueObj : IConvertible<Decimal128>, IConvertible<decimal>
+        public class DecimalValueObj : IConvertible<decimal>
         {
 
             #region Equality
@@ -70,12 +70,7 @@ namespace LAN.Core.Types.Tests.Serialization
                 _sourceValue = sourceValue;
             }
 
-            Decimal128 IConvertible<Decimal128>.ToValueType()
-            {
-                return _sourceValue;
-            }
-
-            decimal IConvertible<decimal>.ToValueType()
+            public decimal ToValueType()
             {
                 return _sourceValue;
             }
@@ -87,6 +82,11 @@ namespace LAN.Core.Types.Tests.Serialization
             {
                 return new DecimalValueObj(serializedObj);
             }
+
+            public override decimal CreateDecimalFromObject(DecimalValueObj obj)
+            {
+                return obj.ToValueType();
+            }
         }
 
 
@@ -96,12 +96,17 @@ namespace LAN.Core.Types.Tests.Serialization
             {
                 return new DecimalValueObj(serializedObj);
             }
+
+            public override decimal CreateDecimalFromObject(DecimalValueObj obj)
+            {
+                return obj.ToValueType();
+            }
         }
 
 
         #endregion
 
-        public class BsonDeserializeDecimalTests : BsonDeserializeContext<DecimalValueObj, Decimal128>
+        public class BsonDeserializeDecimalTests : BsonDeserializeContext<DecimalValueObj, decimal>
         {
             protected override string GetSerializedValue()
             {

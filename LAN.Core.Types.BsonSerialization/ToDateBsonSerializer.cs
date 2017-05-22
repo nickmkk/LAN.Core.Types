@@ -7,10 +7,10 @@ namespace LAN.Core.Types.BsonSerialization
 {
 	public abstract class ToDateBsonSerializer<T> : AbstractClassSerializer<T> where T : class
 	{
-		private static readonly Type _convertibleType = typeof(IConvertible<DateTime>);
-
+		
 		public abstract T CreateObjectFromDate(DateTime serializedObj);
-
+		public abstract DateTime CreateDateFromObject(T obj);
+        
 		public override T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
 		{
 			var bsonType = context.Reader.GetCurrentBsonType();
@@ -46,7 +46,7 @@ namespace LAN.Core.Types.BsonSerialization
 			var date = msSinceEpochOutOfRange 
 				? new DateTime(msSinceEpoch) 
 				: BsonUtils.ToDateTimeFromMillisecondsSinceEpoch(msSinceEpoch);
-			return this.CreateObjectFromDate(date);
+			return CreateObjectFromDate(date);
 		}
 
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, T value)
@@ -57,12 +57,7 @@ namespace LAN.Core.Types.BsonSerialization
 			}
 			else
 			{
-				if (!_convertibleType.IsAssignableFrom(args.NominalType))
-				{
-					throw new NotSupportedException("The type " + args.NominalType.Name + " must implement the " + _convertibleType.Name + " interface.");
-				}
-				var typedObj = (IConvertible<DateTime>)value;
-				var msSinceEpoch = BsonUtils.ToMillisecondsSinceEpoch(typedObj.ToValueType());
+				var msSinceEpoch = BsonUtils.ToMillisecondsSinceEpoch(CreateDateFromObject(value));
 				context.Writer.WriteDateTime(msSinceEpoch);
 			}
 		}

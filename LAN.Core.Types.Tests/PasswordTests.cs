@@ -9,8 +9,8 @@ namespace LAN.Core.Types.Tests
         {
             var password = Password.Parse("Pa55word");
             var hash = PasswordHash.Parse(password);
-            Assert.IsNotNull(hash.ToValueType());
-            Assert.IsNotEmpty(hash.ToValueType());
+            Assert.IsNotNull((string)hash);
+            Assert.IsNotEmpty((string)hash);
         }
 
         [Test()]

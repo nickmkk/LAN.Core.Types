@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace LAN.Core.Types
 {
 	[ImmutableObject(true)]
-	public sealed class EmailAddress : IConvertible<string>
+	public sealed class EmailAddress
 	{
 
 		private static readonly Regex ValidationRegex =
@@ -137,12 +137,7 @@ namespace LAN.Core.Types
 		}
 
 		#endregion
-
-		public string ToValueType()
-		{
-			return this._sourceString;
-		}
-
+        
 		public override string ToString()
 		{
 			return this._sourceString;

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization;
 
-namespace LAN.Core.Types.BsonSerialization
+namespace LAN.Core.Types.Serialization
 {
 	public static class BsonConverters
 	{

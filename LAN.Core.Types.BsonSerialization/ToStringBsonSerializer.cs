@@ -5,10 +5,10 @@ using MongoDB.Bson.Serialization.Serializers;
 
 namespace LAN.Core.Types.BsonSerialization
 {
-	public abstract class ToStringBsonSerializer<T> : AbstractClassSerializer<T> where T : class
+    public abstract class ToStringBsonSerializer<T> : AbstractClassSerializer<T> where T : class
 	{
-		private static readonly Type _convertibleType = typeof(IConvertible<string>);
 		public abstract T CreateObjectFromString(string serializedObj);
+		public abstract string CreateStringFromObject(T obj);
 
 		public override T Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
 		{
@@ -30,24 +30,12 @@ namespace LAN.Core.Types.BsonSerialization
 				default:
 					throw new NotSupportedException("Unable to create the type " + args.NominalType.Name + " from the the bson type " + bsonType + ".");
 			}
-			return this.CreateObjectFromString(value);
+			return CreateObjectFromString(value);
 		}
 
 		public override void Serialize(BsonSerializationContext context, BsonSerializationArgs args, T value)
 		{
-			if (value == null)
-			{
-				context.Writer.WriteString(string.Empty);
-			}
-			else
-			{
-				if (!_convertibleType.IsAssignableFrom(args.NominalType))
-				{
-					throw new NotSupportedException("The type " + args.NominalType.Name + " must implement the " + _convertibleType.Name + " interface.");
-				}
-				var typedObj = (IConvertible<string>)value;
-				context.Writer.WriteString(typedObj.ToValueType());
-			}
+		    context.Writer.WriteString(value == null ? string.Empty : CreateStringFromObject(value));
 		}
 	}
 }
