@@ -8,27 +8,27 @@ Encapsulated Json and Bson Serialization for Custom Value Objects:
 Create Serializers for your objects
 ---
 ```c#
-  public class DecimalValueObjJsonSerializer : ToDecimalJsonSerializer<DecimalValueObj>
+  public class CustomDecimalJsonSerializer : ToDecimalJsonSerializer<CustomDecimal>
   {
-    public override DecimalValueObj CreateObjectFromDecimal(decimal serializedObj)
+    public override CustomDecimal CreateObjectFromDecimal(decimal serializedObj)
     {
-      return new DecimalValueObj(serializedObj);
+      return new CustomDecimal(serializedObj);
     }
     
-    public override decimal CreateDecimalFromObject(DecimalValueObj obj)
+    public override decimal CreateDecimalFromObject(CustomDecimal obj)
     {
       return obj.ToValueType();
     }
   }
 
-  public class DecimalValueObjBsonSerializer : ToDecimalBsonSerializer<DecimalValueObj>
+  public class CustomDecimalBsonSerializer : ToDecimalBsonSerializer<CustomDecimal>
   {
-    public override DecimalValueObj CreateObjectFromDecimal(decimal serializedObj)
+    public override CustomDecimal CreateObjectFromDecimal(decimal serializedObj)
     {
-      return new DecimalValueObj(serializedObj);
+      return new CustomDecimal(serializedObj);
     }
     
-    public override decimal CreateDecimalFromObject(DecimalValueObj obj)
+    public override decimal CreateDecimalFromObject(CustomDecimal obj)
     {
       return obj.ToValueType();
     }
@@ -41,9 +41,9 @@ Register Your Serializers
 ```c#
   JsonConvert.DefaultSettings = () => new JsonSerializerSettings
   {
-    Converters = new JsonConverter[] { new DecimalValueObjJsonSerializer() }
+    Converters = new JsonConverter[] { new CustomDecimalJsonSerializer() }
   };
 
-  BsonSerializer.RegisterSerializer(typeof(DecimalValueObj), new DecimalValueObjBsonSerializer());  
+  BsonSerializer.RegisterSerializer(typeof(CustomDecimal), new CustomDecimalBsonSerializer());  
 ```
 Then, just register the serializers when your application starts up and you can start serializing custom value types, yay!
