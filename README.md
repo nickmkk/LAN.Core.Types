@@ -38,7 +38,7 @@ Bson Serializer
     }
   }
 ```
-Create a serializer for each of your custom value types and inherit from the abstract serializer that matches your type, in this example we used decimal.  Implement the abstract methods for converting your objects to and from the value type.
+Create a serializer for each of your custom value types and inherit from the abstract serializer that matches your type, in this example we used decimal.  Then, implement the abstract methods for converting your objects to and from the value type.
 
 Register Your Serializers
 ---
@@ -54,4 +54,4 @@ Bson Registration
 ```c#
   BsonSerializer.RegisterSerializer(typeof(CustomDecimal), new CustomDecimalBsonSerializer());  
 ```
-Then, just register the serializers when your application starts up and you can start serializing custom value types, yay!
+Finally, just register the serializers when your application starts up and you can start serializing custom value types, yay!
