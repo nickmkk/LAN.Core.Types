@@ -5,24 +5,7 @@ Encapsulated Json and Bson Serialization for Custom Value Objects:
 * Json Serialization - [Nuget](https://www.nuget.org/packages/LAN.Core.Types.JsonSerialization/)
 * Bson Serialization - [Nuget](https://www.nuget.org/packages/LAN.Core.Types.BsonSerialization/)
 
-Implement IConvertible<T>
----
- ```c#
-  public class DecimalValueObj : IConvertible<decimal>
-  {
-    private decimal _sourceValue;  
-    
-    ...
-    
-    public decimal ToValueType()
-    {
-      return _sourceValue;
-    }
-  }
-```
-This will allow the serializer to get your custom objects value for serialization.
-
-Create Your Serializers
+Create Serializers for your objects
 ---
 ```c#
   public class DecimalValueObjJsonSerializer : ToDecimalJsonSerializer<DecimalValueObj>
@@ -30,6 +13,11 @@ Create Your Serializers
     public override DecimalValueObj CreateObjectFromDecimal(decimal serializedObj)
     {
       return new DecimalValueObj(serializedObj);
+    }
+    
+    public override decimal CreateDecimalFromObject(DecimalValueObj obj)
+    {
+      return obj.ToValueType();
     }
   }
 
@@ -39,9 +27,14 @@ Create Your Serializers
     {
       return new DecimalValueObj(serializedObj);
     }
+    
+    public override decimal CreateDecimalFromObject(DecimalValueObj obj)
+    {
+      return obj.ToValueType();
+    }
   }
 ```
-The abstract serializers allow you to control how your custom objects are created.
+Create a serializer for each of your custom value types and inherit from the abstract serializer that matches your type, in this example we used decimal.  Implement the abstract methods for converting your objects to and from the value type.
 
 Register Your Serializers
 ---
@@ -53,4 +46,4 @@ Register Your Serializers
 
   BsonSerializer.RegisterSerializer(typeof(DecimalValueObj), new DecimalValueObjBsonSerializer());  
 ```
-Just register your serializers when your application starts and you can start serializing custom value types, yay!
+Then, just register the serializers when your application starts up and you can start serializing custom value types, yay!
